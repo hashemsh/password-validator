@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>password validator </title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body {
+            font-family: iransans;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script type="text/javascript">
+function checkPasswordStrength() {
+	var number = /([0-9])/;
+	var alphabets = /([a-zA-Z])/;
+	var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+	
+	if($('#password').val().length<6) {
+		$('#password-strength-status').removeClass();
+		$('#password-strength-status').addClass('alert alert-dismissible alert-danger text-right');
+		$('#password-strength-status').html("پسورد ضعیف ، باید بیشتر از 8 کاراکتر باشد ");
+	} else {  	
+	    if($('#password').val().match(number) && $('#password').val().match(alphabets) && $('#password').val().match(special_characters)) {            
+			$('#password-strength-status').removeClass();
+			$('#password-strength-status').addClass('alert alert-dismissible alert-success text-right');
+			$('#password-strength-status').html("تبریک ، پسورد قوی وارد کردید ");
+        } else {
+			$('#password-strength-status').removeClass();
+			$('#password-strength-status').addClass('alert alert-dismissible alert-warning text-right');
+			$('#password-strength-status').html("پسورد متوسط ، بهتر است ترکیبی از حروف کوچک و بزرگ و علامت و عدد باشد ");
+        } 
+	}
+}
+</script>
+    <div class="container">
+        <div class="col-12 mt-4">
+            <div class="form-group">
+                <label for="password">password :</label>
+                <input class="form-control mb-3" type="password" name="password" id="password" onKeyUp="checkPasswordStrength();">
+                <div id="password-strength-status"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
